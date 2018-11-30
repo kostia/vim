@@ -102,11 +102,13 @@ call plug#begin('~/.vim/plugged')
 " ### Basic plugins
 "
 
+Plug 'Numkil/ag.nvim' " 'ag' integration
 Plug 'Raimondi/delimitMate' " Automatically close the parethesis
 Plug 'airblade/vim-gitgutter' " Show which lines were modified
 Plug 'altercation/vim-colors-solarized' " Colors cheme
+Plug 'cloudhead/neovim-fuzzy' " Fuzzy search
 Plug 'godlygeek/tabular' " Table formatting
-Plug 'nathanaelkane/vim-indent-guides' " Colorful indentation
+Plug 'prettier/vim-prettier', {'do': 'yarn install'} " Prettier bindings
 Plug 'scrooloose/nerdtree' " Nerdtree
 Plug 'vim-airline/vim-airline' " Better status bar
 Plug 'vim-airline/vim-airline-themes' " Status bar themes
@@ -121,8 +123,11 @@ Plug 'vim-ruby/vim-ruby'
 " JavaScript
 Plug 'jelera/vim-javascript-syntax'
 
-" TypeScript
-Plug 'leafgarland/typescript-vim'
+" NeoVim TypeScript support
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/denite.nvim'
 
 " CoffeeScript
 Plug 'kchmck/vim-coffee-script'
@@ -137,15 +142,24 @@ set t_Co=256
 colorscheme solarized
 
 " nerdtree
-nmap <silent> <c-n> :NERDTreeTabsToggle<CR>
 let NERDTreeMapActivateNode="y"
 function! NextTab()
   exe "normal \<C-W>\<C-w>"
 endfunction
 autocmd VimEnter * call NextTab()
 
-" vim-indent-guides
-let g:indent_guides_enable_on_vim_startup = 1
+" TypeScript / deoplete
+nmap <silent> <c-t> :TSType<CR>
+nmap <silent> <c-d> :TSDefPreview<CR>
+let g:deoplete#enable_at_startup = 1
+
+" Prettier
+let g:prettier#exec_cmd_async = 1
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+
+" Fuzzy search
+nnoremap <C-p> :FuzzyOpen<CR>
 
 autocmd BufNewFile,BufRead *.es6 set syntax=javascript
 
