@@ -156,7 +156,7 @@ let g:deoplete#enable_at_startup = 1
 " Prettier
 let g:prettier#exec_cmd_async = 1
 let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
 " Fuzzy search
 nnoremap <C-p> :FuzzyOpen<CR>
