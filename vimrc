@@ -165,3 +165,6 @@ autocmd BufNewFile,BufRead *.es6 set syntax=javascript
 
 set dir=$HOME/.vimtmp/swap//
 if !isdirectory(&dir) | call mkdir(&dir, 'p', 0700) | endif
+
+" Visual mode: copy-to-clipboard using space
+vmap <Space> "*y
